@@ -34,9 +34,7 @@ html {
   border-bottom: 1px solid #000;
   margin-bottom: 1em;
   background-color: #000000;
-  zoom: 1;
-  filter: alpha(opacity=60);
-  opacity: 0.6;
+
 }
 
 .transparent {
