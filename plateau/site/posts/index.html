@@ -7,8 +7,8 @@
   <meta name="author" content="">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="alternate" type="application/rss+xml" href="http://monkeemagic.io/rss.xml" title="RSS">
-  <link rel="stylesheet" href="../frontend/style.css?v=1">
-  <script type="text/javascript" src="../frontend/js.js"></script>
+  <link rel="stylesheet" href="./frontend/style.css?v=1">
+  <script type="text/javascript" src="./frontend/js.js"></script>
 </head>
   <body class="posts">
     <div id="masthead">
@@ -25,42 +25,50 @@
       </div>
     </div>
     <div id="page">
+
       
       <div class="posts">
-  <div class="post example-post">
+  <div class="post introduction">
     <div class="header">
-      <h1><a href="/posts/example-post/">A Post With a Lede</a></h1>
-      <small>Written by Author. Sunday, February 12 2012.</small>
-      <div class="tags"><small><a href="tagged/tag_a" class="tag">tag a</a><a href="tagged/tag_b" class="tag">tag b</a><a href="tagged/tag_c" class="tag">tag c</a></small></div>
+      <h1><a href="/posts/introduction/">All the limits in the world……</a></h1>
+      <small>Written by Monkee. Saturday, December 28 2013.</small>
+      <div class="tags"><small><a href="tagged/limits" class="tag">limits</a><a href="tagged/elasticsearch" class="tag">elasticsearch</a><a href="tagged/ubuntu" class="tag">ubuntu</a><a href="tagged/debian" class="tag">debian</a></small></div>
     </div>
     <div class="body">
     
-<p>Hi there I am a <em>lede</em> for a longer article.</p>
+<p>I had trouble finding all the places to change max files that can be opened on Ubuntu and Debian in one spot.</p>
 
-<p>It’s a good article, you should click through to read it.</p>
+<p>So here we go:</p>
 
-    <p><a href="/posts/example-post/">Read More...</a></p>
+<h3 id="step_1">Step 1</h3>
+
+<p>First modify /etc/sysctl.conf add the following line: need I say check that it isn’t there already?</p>
+
+<pre><code>fs.file-max = 131072</code></pre>
+
+<p>To avoid a reboot type in the following to reread the configuration and apply it to the system.</p>
+
+<pre><code>sysctl -p</code></pre>
+
+<h3 id="step_2">Step 2</h3>
+
+<p>Now include the pam limits shared library to:</p>
+
+<pre><code>/etc/pam.d/common-session
+/etc/pam.d/common-session-interactive</code></pre>
+
+<p>The syntax follows:</p>
+
+<pre><code>session required pam_limits.so</code></pre>
+
+<h3 id="step_3">Step 3</h3>
+
+<p>You are ready to modify the limits config file (/etc/security/limits.conf):</p>
+
+<pre><code>elasticsearch  -  nofile   131072
+elasticsearch  -  memlock  unlimited</code></pre>
+
     
-    </div>
-    <div class="footer">
-
-    </div>
-  </div>
-  <div class="post script_post">
-    <div class="header">
-      <h1><a href="/posts/script_post/">Post specific javascript and css!</a></h1>
-      <small>Written by Author Name. Saturday, January 21 2012.</small>
-      <div class="tags"><small><a href="tagged/tag_a" class="tag">tag a</a><a href="tagged/html" class="tag">html</a></small></div>
-    </div>
-    <div class="body">
-    
-<p>Below is an image rendered with canvas by this post’s attached javascript.</p>
-
-<p><canvas id='example_canvas_image' /></p>
-
-    <script type="text/javascript" src="../posts/script_post/canvas.js" ></script>
-<link rel="stylesheet" href="../posts/script_post/canvas.css" >
-
     </div>
     <div class="footer">
 
@@ -112,10 +120,11 @@
   
 </div>
 
+
     </div>
     <div id="footer">
       <hr>
-      <small>Powered by Plateau</small>
+      <small>Powered by <a href="https://github.com/danielsim/Plateau">Plateau</a></small>
     </div>
   </body>
 </html>

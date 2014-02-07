@@ -205,7 +205,24 @@ table.nowrap td, table.nowrap th {
   opacity: 0.6;
   background-color: grey;
 }
+#education_and_certifications, #work_experience, #employment_history {
+  filter: alpha(opacity=60);
+  opacity: 0.6;
+  background-color: grey;
+    color: #3be223;
 
+}
+pre {
+    background-color: grey;
+    padding: 5px;
+    margin:10px;
+    color: white;
+}
+ul, p {
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+  background-color: white;
+}
 .post h1 {
   margin-bottom: 0;
   padding-bottom: 0;
@@ -251,6 +268,11 @@ a.tag:hover {
 .post .header small {
   color: #ccc;
   text-transform: uppercase;
+  font-size: 70%;
+}
+
+#footer small {
+  color: #ccc;
   font-size: 70%;
 }
 

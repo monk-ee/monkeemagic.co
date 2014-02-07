@@ -6,27 +6,43 @@
 <atom:link href="http://monkeemagic.io/rss.xml" rel="self" type="application/rss+xml" />
 <description>a site which is an example of sites</description>
 <item>
-<title>A Post With a Lede</title>
-<link>http://monkeemagic.io/posts/example-post/</link>
-<guid>http://monkeemagic.io/posts/example-post/</guid>
-<pubDate>Sun, 12 Feb 2012 04:00:00 EST</pubDate>
+<title>All the limits in the world……</title>
+<link>http://monkeemagic.io/posts/introduction/</link>
+<guid>http://monkeemagic.io/posts/introduction/</guid>
+<pubDate>Sat, 28 Dec 2013 04:00:00 EST</pubDate>
 <description><![CDATA[
 
-<p>Hi there I am a <em>lede</em> for a longer article.</p>
+<p>I had trouble finding all the places to change max files that can be opened on Ubuntu and Debian in one spot.</p>
 
-<p>It’s a good article, you should click through to read it.</p>
-]]></description>
-</item>
-<item>
-<title>Post specific javascript and css!</title>
-<link>http://monkeemagic.io/posts/script_post/</link>
-<guid>http://monkeemagic.io/posts/script_post/</guid>
-<pubDate>Sat, 21 Jan 2012 04:00:00 EST</pubDate>
-<description><![CDATA[
+<p>So here we go:</p>
 
-<p>Below is an image rendered with canvas by this post’s attached javascript.</p>
+<h3 id="step_1">Step 1</h3>
 
-<p><canvas id='example_canvas_image' /></p>
+<p>First modify /etc/sysctl.conf add the following line: need I say check that it isn’t there already?</p>
+
+<pre><code>fs.file-max = 131072</code></pre>
+
+<p>To avoid a reboot type in the following to reread the configuration and apply it to the system.</p>
+
+<pre><code>sysctl -p</code></pre>
+
+<h3 id="step_2">Step 2</h3>
+
+<p>Now include the pam limits shared library to:</p>
+
+<pre><code>/etc/pam.d/common-session
+/etc/pam.d/common-session-interactive</code></pre>
+
+<p>The syntax follows:</p>
+
+<pre><code>session required pam_limits.so</code></pre>
+
+<h3 id="step_3">Step 3</h3>
+
+<p>You are ready to modify the limits config file (/etc/security/limits.conf):</p>
+
+<pre><code>elasticsearch  -  nofile   131072
+elasticsearch  -  memlock  unlimited</code></pre>
 ]]></description>
 </item>
 <item>
