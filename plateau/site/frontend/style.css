@@ -205,7 +205,7 @@ table.nowrap td, table.nowrap th {
   opacity: 0.6;
   background-color: grey;
 }
-#education_and_certifications, #work_experience, #employment_history {
+#education_and_certifications, #work_experience, #employment_history, #who_what_how {
   filter: alpha(opacity=60);
   opacity: 0.6;
   background-color: grey;
