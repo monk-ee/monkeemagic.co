@@ -46,37 +46,21 @@ elasticsearch  -  memlock  unlimited</code></pre>
 ]]></description>
 </item>
 <item>
-<title>A HTML Post</title>
-<link>http://monkeemagic.io/posts/html_post/</link>
-<guid>http://monkeemagic.io/posts/html_post/</guid>
-<pubDate>Mon, 02 Jan 2012 04:00:00 EST</pubDate>
+<title>Add Shard Replicas to Elasticsearch</title>
+<link>http://monkeemagic.io/posts/elasticsearch/</link>
+<guid>http://monkeemagic.io/posts/elasticsearch/</guid>
+<pubDate>Thu, 19 Dec 2013 04:00:00 EST</pubDate>
 <description><![CDATA[
-<h3>A Post written in html</h3>
-<p>An index.html file in a page or post directory will take priority over markdown</p>
-<table cellspacing="0">
-  <thead>
-    <tr>
-      <th>Column A</th><th>Column B</th><th>Column C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-  </tbody>
-</table>
+
+<p>As addendum to the previous post about corrupt Elasticsearch Shards, here is the command to increase your shard replicas.</p>
+
+<p>For the entire cluster; for craps sake make sure you have enough disk space for this:</p>
+
+<pre><code>curl -XPUT 'localhost:9200/_settings' -d  '{ &quot;index&quot; : { &quot;number_of_replicas&quot; : 2 } }'</code></pre>
+
+<p>For a specific index use this command:</p>
+
+<pre><code>curl -XPUT 'localhost:9200/&lt;index_name&gt;/_settings' -d  '{ &quot;index&quot; : { &quot;number_of_replicas&quot; : 2 } }'</code></pre>
 ]]></description>
 </item>
 </channel>
