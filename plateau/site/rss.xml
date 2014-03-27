@@ -6,61 +6,61 @@
 <atom:link href="http://monkeemagic.io/rss.xml" rel="self" type="application/rss+xml" />
 <description>a site which is an example of sites</description>
 <item>
-<title>A Post With a Lede</title>
-<link>http://monkeemagic.io/posts/example-post/</link>
-<guid>http://monkeemagic.io/posts/example-post/</guid>
-<pubDate>Sun, 12 Feb 2012 04:00:00 EST</pubDate>
+<title>All the limits in the world……</title>
+<link>http://monkeemagic.io/posts/introduction/</link>
+<guid>http://monkeemagic.io/posts/introduction/</guid>
+<pubDate>Sat, 28 Dec 2013 04:00:00 EST</pubDate>
 <description><![CDATA[
 
-<p>Hi there I am a <em>lede</em> for a longer article.</p>
+<p>I had trouble finding all the places to change max files that can be opened on Ubuntu and Debian in one spot.</p>
 
-<p>It’s a good article, you should click through to read it.</p>
+<p>So here we go:</p>
+
+<h3 id="step_1">Step 1</h3>
+
+<p>First modify /etc/sysctl.conf add the following line: need I say check that it isn’t there already?</p>
+
+<pre><code>fs.file-max = 131072</code></pre>
+
+<p>To avoid a reboot type in the following to reread the configuration and apply it to the system.</p>
+
+<pre><code>sysctl -p</code></pre>
+
+<h3 id="step_2">Step 2</h3>
+
+<p>Now include the pam limits shared library to:</p>
+
+<pre><code>/etc/pam.d/common-session
+/etc/pam.d/common-session-interactive</code></pre>
+
+<p>The syntax follows:</p>
+
+<pre><code>session required pam_limits.so</code></pre>
+
+<h3 id="step_3">Step 3</h3>
+
+<p>You are ready to modify the limits config file (/etc/security/limits.conf):</p>
+
+<pre><code>elasticsearch  -  nofile   131072
+elasticsearch  -  memlock  unlimited</code></pre>
 ]]></description>
 </item>
 <item>
-<title>Post specific javascript and css!</title>
-<link>http://monkeemagic.io/posts/script_post/</link>
-<guid>http://monkeemagic.io/posts/script_post/</guid>
-<pubDate>Sat, 21 Jan 2012 04:00:00 EST</pubDate>
+<title>Add Shard Replicas to Elasticsearch</title>
+<link>http://monkeemagic.io/posts/elasticsearch/</link>
+<guid>http://monkeemagic.io/posts/elasticsearch/</guid>
+<pubDate>Thu, 19 Dec 2013 04:00:00 EST</pubDate>
 <description><![CDATA[
 
-<p>Below is an image rendered with canvas by this post’s attached javascript.</p>
+<p>As addendum to the previous post about corrupt Elasticsearch Shards, here is the command to increase your shard replicas.</p>
 
-<p><canvas id='example_canvas_image' /></p>
-]]></description>
-</item>
-<item>
-<title>A HTML Post</title>
-<link>http://monkeemagic.io/posts/html_post/</link>
-<guid>http://monkeemagic.io/posts/html_post/</guid>
-<pubDate>Mon, 02 Jan 2012 04:00:00 EST</pubDate>
-<description><![CDATA[
-<h3>A Post written in html</h3>
-<p>An index.html file in a page or post directory will take priority over markdown</p>
-<table cellspacing="0">
-  <thead>
-    <tr>
-      <th>Column A</th><th>Column B</th><th>Column C</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-    <tr>
-      <td>data</td>
-      <td>data</td>
-      <td>data</td>
-    </tr>
-  </tbody>
-</table>
+<p>For the entire cluster; for craps sake make sure you have enough disk space for this:</p>
+
+<pre><code>curl -XPUT 'localhost:9200/_settings' -d  '{ &quot;index&quot; : { &quot;number_of_replicas&quot; : 2 } }'</code></pre>
+
+<p>For a specific index use this command:</p>
+
+<pre><code>curl -XPUT 'localhost:9200/&lt;index_name&gt;/_settings' -d  '{ &quot;index&quot; : { &quot;number_of_replicas&quot; : 2 } }'</code></pre>
 ]]></description>
 </item>
 </channel>

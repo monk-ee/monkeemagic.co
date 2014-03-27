@@ -1,0 +1,25 @@
+import cPickle as pickle
+import pprint
+
+favorite_color = {}
+
+favorite_color = pickle.load( open("../../../../save.p", "rb" ) )
+
+pprint(favorite_color)
+
+
+Source hash file 06cd3bb2f6150dcef596eb04b5b21df5 contains an invalid hash format, it must be in the format <hash type>=<hash>
+
+
+/var/lib/tomcat7/webapps/TeamCity-8.0.6.war:
+  file.managed:
+    - user: teamcity
+    - group: teamcity
+    - mode: 644
+    - source: s3://ol-salt/TeamCity-8.0.6.war
+    - source_hash: md5=06cd3bb2f6150dcef596eb04b5b21df5
+
+~
+~
+~
+~
